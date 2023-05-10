@@ -54,10 +54,10 @@ sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -
                         nexusArtifactUploader(
                             nexusVersion: "nexus3",
                             protocol: "http",
-                            nexusUrl: "192.168.1.2:8081",
+                            nexusUrl: "192.168.1.89:8082",
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: "maven-releases",
+                            repository: "modulo3actividadgrupal",
                             credentialsId: "nexus",
                             artifacts: [
                                 [artifactId: pom.artifactId,
