@@ -4,7 +4,7 @@ pipeline {
         stage('Initialize'){
             steps{
                 echo "Esta es el inicio"
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         }
             
@@ -13,7 +13,7 @@ pipeline {
             steps {
                  
            sh 'cat Jenkinsfile'     
-            slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
+            slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }              
           
@@ -29,14 +29,14 @@ sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.p
         stage('Build') {
             steps {
                 sh 'mvn -B package'
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }
             
         stage('Test') {
             steps {
                  sh "mvn clean verify" 
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         }                    
             
@@ -69,7 +69,7 @@ sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.p
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         } 
      }
