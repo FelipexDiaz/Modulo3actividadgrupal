@@ -38,8 +38,6 @@ sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -
             steps {
                 script {
                     def pomPath = 'pom.xml'
-                      pomPath = './/artifactId/pom.xml'
-                    echo pomPath; 
                     pom = readMavenPom file: pomPath
                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
