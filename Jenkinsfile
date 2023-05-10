@@ -21,7 +21,7 @@ pipeline {
         stage('Sonar') {
             steps {
                  
-sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.projectKey=modulo3actividadgrupal -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.89:9001 -Dsonar.login=sqp_49838cf4416d600b4d2d925bca6dfa1edd9771ac -Dsonar.exclusions=sonar.java.binaries/** -Dsonar.java.binaries=**'
+sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.projectKey=modulo3actividadgrupal -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.89:9001 -Dsonar.login=sqp_49838cf4416d600b4d2d925bca6dfa1edd9771ac -Dsonar.exclusions=sonar.java.binaries/** -Dsonar.java.binaries=**'
                 slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }           
