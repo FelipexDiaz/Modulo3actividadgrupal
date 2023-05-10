@@ -4,25 +4,18 @@ pipeline {
         stage('Initialize'){
             steps{
                 echo "Esta es el inicio"
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"               
             }
         }            
-            
-            
-            
+                                    
         stage('Test2') {
-            steps {
-                 
-           sh 'cat Jenkinsfile'     
-            slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
+            steps {                 
+               sh 'cat Jenkinsfile'     
             }
         }              
           
         stage('Sonar') {
-            steps {
-                 
+            steps {                
 sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.projectKey=modulo3actividadgrupal -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.89:9001 -Dsonar.login=sqp_49838cf4416d600b4d2d925bca6dfa1edd9771ac -Dsonar.exclusions=sonar.java.binaries/** -Dsonar.java.binaries=**'
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }           
             
@@ -30,14 +23,12 @@ sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -
         stage('Build') {
             steps {
                 sh 'mvn -B package'
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }
             
         stage('Test') {
             steps {
                  sh "mvn clean verify" 
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         }                    
             
@@ -70,13 +61,12 @@ sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
-                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         } 
      }
     
     post {
-        always {
+        failure {
         slackSend  channel: "modulo3actividadgrupal", message: "Job: ${env.JOB_NAME} - Result: ${currentBuild.currentResult}"
             }
      }
