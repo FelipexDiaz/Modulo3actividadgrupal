@@ -22,7 +22,9 @@ sh '/var/jenkins_home/sonar-scanner/bin/sonar-scanner -Dsonar.projectBaseDir=. -
             
         stage('Build') {
             steps {
+                 echo 'mvn -B package 1'
                 sh 'mvn -B package'
+                echo 'mvn -B package 2'
             }
         }
             
