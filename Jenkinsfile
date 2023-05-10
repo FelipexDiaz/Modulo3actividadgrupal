@@ -4,24 +4,24 @@ pipeline {
         stage('Initialize'){
             steps{
                 echo "Esta es el inicio"
-                slackSend  color: "#439FE0", channel: "fundamentos-de-devops", message: "${STAGE_NAME}  :unicorn_face:", username: "felipe diaz"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
-        }
+        }            
             
             
         stage('Test2') {
             steps {
                  
            sh 'cat Jenkinsfile'     
-            slackSend  color: "#439FE0", channel: "fundamentos-de-devops", message: "${STAGE_NAME}  :unicorn_face:"
+            slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }              
           
         stage('Sonar') {
             steps {
                  
-sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.projectKey=pipe -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.2:9000 -Dsonar.login=squ_748e8a3c4efd1b032364b067b52a2d33b5755ff9 -Dsonar.exclusions=sonar.java.binaries/** -Dsonar.java.binaries=**'
-                slackSend  color: "#439FE0", channel: "fundamentos-de-devops", message: "${STAGE_NAME}  :unicorn_face:"
+sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.projectKey=pipe -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.89:9001 -Dsonar.login=squ_748e8a3c4efd1b032364b067b52a2d33b5755ff9 -Dsonar.exclusions=sonar.java.binaries/** -Dsonar.java.binaries=**'
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}  :unicorn_face:"
             }
         }           
             
@@ -29,14 +29,14 @@ sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.p
         stage('Build') {
             steps {
                 sh 'mvn -B package'
-                slackSend  color: "#439FE0", channel: "fundamentos-de-devops", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME} "
             }
         }
             
         stage('Test') {
             steps {
                  sh "mvn clean verify" 
-                slackSend  color: "#439FE0", channel: "fundamentos-de-devops", message: "${STAGE_NAME}  :unicorn_face:"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         }                    
             
@@ -69,14 +69,14 @@ sh '/var/jenkins_home/sonar/bin/sonar-scanner -Dsonar.projectBaseDir=. -Dsonar.p
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
-                slackSend  channel: "fundamentos-de-devops", message: "${STAGE_NAME}"
+                slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
         } 
      }
     
     post {
         always {
-        slackSend  channel: "fundamentos-de-devops", message: "Job: ${env.JOB_NAME} - Result: ${currentBuild.currentResult}"
+        slackSend  channel: "modulo3actividadgrupal", message: "Job: ${env.JOB_NAME} - Result: ${currentBuild.currentResult}"
             }
      }
 }
