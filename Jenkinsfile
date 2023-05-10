@@ -6,8 +6,7 @@ pipeline {
                 echo "Esta es el inicio"
                 slackSend  color: "#439FE0", channel: "modulo3actividadgrupal", message: "${STAGE_NAME}"
             }
-        }
-            
+        }            
             
         stage('Test2') {
             steps {
